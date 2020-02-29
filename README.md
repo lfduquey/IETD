@@ -4,7 +4,8 @@ IETD
 ====
 
 <!-- badges: start -->
-<!-- badges: end -->
+[![Travis build status](https://travis-ci.org/lfduquey/IETD.svg?branch=master)](https://travis-ci.org/lfduquey/IETD) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/lfduquey/IETD?branch=master&svg=true)](https://ci.appveyor.com/project/lfduquey/IETD) <!-- badges: end -->
+
 The goal of IETD is to compute rainfall characteristics of independent rainfall events extracted from a sub-daily rainfall time series based on the inter-event time definition (IETD) method. To have a reference value of IETD, it also analyzes/computes IETD values through three methods: autocorrelation analysis, the average annual number of events analysis, and coefficient of variation analysis. Ideal to analyze the sensitivity of IETD to rainfall characteristics of independent rainfall events
 
 Installation
