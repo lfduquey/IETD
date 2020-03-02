@@ -5,7 +5,7 @@
 #'
 #' @usage AAEA(Time_series,MaxIETD)
 #'
-#' @param Time_series A dataframe. First column contains the time and day of the rainfall pulse and the second one the depth
+#' @param Time_series A dataframe. First column contains the time and day of a rainfall pulse and the second one the depth
 #'                   of rainfall in each time step. The date must be as POSIXct class.
 #' @param MaxIETD The maximum value of IETD to be analyzed (in hours). Default value 24.
 #'
@@ -31,7 +31,7 @@
 #'
 #' @examples AAEA(Time_series=hourly_time_series,MaxIETD=24)
 #' @export
-AAEA<- function(Time_series,MaxIETD) {
+AAEA<- function(Time_series,MaxIETD=24) {
 
 # define Global variables
 i<-IETD<-AAE<-NULL

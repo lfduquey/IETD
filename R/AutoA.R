@@ -4,17 +4,19 @@
 #' the autocorrelation analysis.
 #'
 #'
-#' @usage AutoA(Time_series,MaxLag)
+#' @usage AutoA(Time_series,MaxLag,CL)
 #'
-#' @param Time_series A dataframe. First column contains the time and day of the rainfall pulse and the second one the depth
+#' @param Time_series A dataframe. First column contains the time and day of a rainfall pulse and the second one the depth
 #'                    of rainfall in each time step. The date must be as POSIXct class.
 #' @param MaxLag The maximum lag time to be analyzed (in hours). Default value 24.
+#' @param CL The confidence level of the autocorrelation function (ACF)(in percentage). Default value 95\%.
 #'
-#' @details IETD is here defined as the lag time where the autocorrelation coefficient (AUC) of
-#' rain pulses converges to zero \insertCite{Joo2014,Adams2000}{IETD}. The analyst uses a plot of lag time vs AUC, known as autocorrelogram,
-#' to define that value. This function is based on the function \code{\link[stats]{acf}} of the \code{\link{stats}} package.
+#' @details IETD is here defined as the lag time where the autocorrelation coefficient of
+#' rain pulses, i.e. the autocorrelation function(ACF), converges to zero \insertCite{Joo2014,Adams2000}{IETD}. The
+#' analyst uses an autocorrelogram to define that value within a specific level of tolerance. This function is
+#' based on the function \code{\link[stats]{acf}} of the \code{\link{stats}} package.
 #'
-#' @return A list with a figure of LagT vs AUC (autocorrelogram) and a dataframe with its values.
+#' @return A list with a figure of lag time vs ACF, i.e. an autocorrelogram, and a dataframe with its values.
 #'
 #' @note To review the concept of IETD, go to the details of  \code{\link{drawre}} function.
 #'
@@ -22,13 +24,13 @@
 #'
 #' @references \insertAllCited{}
 #'
-#' @importFrom stats acf
+#' @importFrom stats acf qnorm
 #' @import ggplot2
 #'
 #'
 #' @export
-#' @examples AutoA(Time_series=hourly_time_series,MaxLag=24)
-AutoA<- function(Time_series,MaxLag=24) {
+#' @examples AutoA(Time_series=hourly_time_series,MaxLag=24,CL=95)
+AutoA<- function(Time_series,MaxLag=24,CL=95) {
 
 # define Global variables
 Lag_Time<-NULL
@@ -71,15 +73,24 @@ hourly_Lags<-Lags*Time_Step #Lag time in hours
 #-----------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------
+# Computes the point of statistical significance of ACF 95%.
+
+significance_level <- stats::qnorm((1 + CL/100)/2)/sqrt(length(Time_series[,2]))
+
+#-----------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------------
 # Plot
 
 df<-data.frame(hourly_Lags,ACF)
 colnames(df)[1]<-"Lag_Time"
 
-AutoA_Plot<- ggplot2::ggplot(data = df, aes(x=Lag_Time,y=ACF))+
+AutoA_Plot<-ggplot2::ggplot(data = df, aes(x=Lag_Time,y=ACF))+
   theme_bw()+
   geom_line()+
   geom_point()+
+  geom_hline(yintercept = significance_level,linetype = "dashed", colour="blue")+
+  geom_hline(yintercept = -significance_level,linetype = "dashed", colour="blue")+
   xlab("Lag time [h]")+ ylab("Autocorrelation Coefficient")
 
 #-----------------------------------------------------------------------------------------------------------------------

@@ -7,7 +7,7 @@
 drawre(Time_series,IETD,Thres)
 }
 \arguments{
-\item{Time_series}{A dataframe. First column contains the time and day of the rainfall pulse and the second one the depth
+\item{Time_series}{A dataframe. First column contains the time and day of a rainfall pulse and the second one the depth
 of rainfall in each time step. The date must be as POSIXct class.}
 
 \item{IETD}{The minimum rainless period or dry period (hours) to be considered between two independent rainfall events.}
@@ -17,10 +17,10 @@ of rainfall in each time step. The date must be as POSIXct class.}
 \value{
 A list with a dataframe, named Rainfall_Characteristics, and a sublist, named Rainfall_Events,is provided.
 Rainfall_Characteristics contains the main information of each extracted rainfall event such as the number of
-event, the beginning and end of the event, duration, volume, and average intensity. Rainfall_Events contains several
-dataframes with the values of rainfall pulses of each extracted rainfall event. The first dataframe
-in Rainfall_Events corresponds to the first event in Rainfall_Characteristics, the second dataframe in Rainfall_Events
-corresponds to the second event in Rainfall_Characteristics and so on.
+event, the beginning and end of the event, duration (in hours), volume (in mm), and average intensity (in mm/h).
+Rainfall_Events contains several dataframes with the values of rainfall pulses of each extracted rainfall event.
+The first dataframe in Rainfall_Events corresponds to the first event in Rainfall_Characteristics, the second
+dataframe in Rainfall_Events corresponds to the second event in Rainfall_Characteristics and so on.
 }
 \description{
 This function draws rainfall events from a sub-daily rainfall time series based on the inter-event

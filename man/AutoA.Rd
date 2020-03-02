@@ -4,31 +4,34 @@
 \alias{AutoA}
 \title{Autocorrelation analysis}
 \usage{
-AutoA(Time_series,MaxLag)
+AutoA(Time_series,MaxLag,CL)
 }
 \arguments{
-\item{Time_series}{A dataframe. First column contains the time and day of the rainfall pulse and the second one the depth
+\item{Time_series}{A dataframe. First column contains the time and day of a rainfall pulse and the second one the depth
 of rainfall in each time step. The date must be as POSIXct class.}
 
 \item{MaxLag}{The maximum lag time to be analyzed (in hours). Default value 24.}
+
+\item{CL}{The confidence level of the autocorrelation function (ACF)(in percentage). Default value 95\%.}
 }
 \value{
-A list with a figure of LagT vs AUC (autocorrelogram) and a dataframe with its values.
+A list with a figure of lag time vs ACF, i.e. an autocorrelogram, and a dataframe with its values.
 }
 \description{
 This function provides the required figure (an autocorrelogram) to define the inter-event time definition (IETD) based on
 the autocorrelation analysis.
 }
 \details{
-IETD is here defined as the lag time where the autocorrelation coefficient (AUC) of
-rain pulses converges to zero \insertCite{Joo2014,Adams2000}{IETD}. The analyst uses a plot of lag time vs AUC, known as autocorrelogram,
-to define that value. This function is based on the function \code{\link[stats]{acf}} of the \code{\link{stats}} package.
+IETD is here defined as the lag time where the autocorrelation coefficient of
+rain pulses, i.e. the autocorrelation function(ACF), converges to zero \insertCite{Joo2014,Adams2000}{IETD}. The
+analyst uses an autocorrelogram to define that value within a specific level of tolerance. This function is
+based on the function \code{\link[stats]{acf}} of the \code{\link{stats}} package.
 }
 \note{
 To review the concept of IETD, go to the details of  \code{\link{drawre}} function.
 }
 \examples{
-AutoA(Time_series=hourly_time_series,MaxLag=24)
+AutoA(Time_series=hourly_time_series,MaxLag=24,CL=95)
 }
 \references{
 \insertAllCited{}

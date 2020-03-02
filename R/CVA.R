@@ -4,13 +4,13 @@
 #'
 #' @usage CVA(Time_series,MaxIETD)
 #'
-#' @param Time_series A dataframe. First column contains the time and day of the rainfall pulse and the second one the depth
+#' @param Time_series A dataframe. First column contains the time and day of a rainfall pulse and the second one the depth
 #'                   of rainfall in each time step. The date must be as POSIXct class.
 #' @param MaxIETD The maximum value of IETD to be analyzed (in hours). Default value 24.
 #'
 #' @details This method assumes that inter-event times (b) are represented well by a exponential distribution. Since
-#' b>= IETD, IETD is computed as the value whose resulting coefficient of variation (CV) of b equal to unity \insertCite{Restrepo-Posada1982,Adams2000}{IETD}.
-#' This analysis is done by testing several values of IETD and analyzing the resulting CV.The computed IETD is obtained via interpolation from the figure of
+#' by definition b>= IETD, IETD is computed as the value whose resulting coefficient of variation (CV) of b equal to unity \insertCite{Restrepo-Posada1982,Adams2000}{IETD}.
+#' This analysis is done by testing several values of IETD and analyzing the resulting CV. The computed IETD is obtained via interpolation from the figure of
 #' IETD vs CV.
 #'
 #' @return A list with a figure of IETD vs CV, a dataframe with the values of that figure, and the computed value of IETD.
