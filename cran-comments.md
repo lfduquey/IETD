@@ -21,7 +21,7 @@ There were 2 NOTEs:
 
 ### Submission comments 
 
-03-03-2020 This is a new submission. In this version I have:
+02-03-2020 This is a new submission. In this version I have:
 
 * Used "\donttest{}" for the example of the function drawre. The run time of this 
   example depend on the number of cores of the computer; they can be greater than 5 seconds.

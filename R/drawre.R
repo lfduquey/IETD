@@ -19,9 +19,9 @@
 #' events is known as inter-event time (b) and by definition b>= IETD. A rainfall event whose rainfall pulses are lower than the
 #' threshold Thres is characterized as a slight rainfall event.
 #'
-#' @return A list with a dataframe, named Rainfall_Characteristics, and a sublist, named Rainfall_Events,is provided.
+#' @return A list with a dataframe, named Rainfall_Characteristics, and a sublist, named Rainfall_Events, is provided.
 #' Rainfall_Characteristics contains the main information of each extracted rainfall event such as event number,
-#' the beginning and end of the event, duration (in hours), volume (in mm), and average intensity (in mm/h).
+#' the beginning and end of the event, duration (in hours), rainfall depth, and average intensity (rainfall depth/duration).
 #' Rainfall_Events contains several dataframes with the values of rainfall pulses of each extracted rainfall event.
 #' The first dataframe in Rainfall_Events corresponds to the first event in Rainfall_Characteristics, the second
 #' dataframe in Rainfall_Events corresponds to the second event in Rainfall_Characteristics, and so on.

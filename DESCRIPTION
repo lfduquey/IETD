@@ -9,6 +9,9 @@ Description: Computes rainfall characteristics of independent rainfall events ex
   analyzes/computes IETD values through three methods: autocorrelation analysis, the average annual number of events 
   analysis, and coefficient of variation analysis. Ideal for analyzing the sensitivity of IETD to rainfall characteristics
   of independent rainfall events.
+  Adams B, Papa F (2000) <ISBN: 978-0-471-33217-6>.
+  Joo J et al. (2014) <https://doi.org/10.3390/w6010045>.
+  Restrepo-Posada P, Eagleson P (1982) <https://doi.org/10.1016/0022-1694(82)90136-6>.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
