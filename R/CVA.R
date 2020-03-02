@@ -2,11 +2,13 @@
 #'
 #' @description This function computes the inter-event time definition (IETD) based on the coefficient of variation analysis.
 #'
-#' @usage CVA(Time_series,MaxIETD)
+#' @usage CVA(Time_series,MaxIETD,xlabel,ylabel)
 #'
-#' @param Time_series A dataframe. First column contains the time and day of a rainfall pulse and the second one the depth
+#' @param Time_series A dataframe. The first column contains the time and day of a rainfall pulse and the second one the depth
 #'                   of rainfall in each time step. The date must be as POSIXct class.
 #' @param MaxIETD The maximum value of IETD to be analyzed (in hours). Default value 24.
+#' @param xlabel Label of the x-axis of the figure IETD vs CV.
+#' @param ylabel Label of the y-axis of the figure IETD vs CV.
 #'
 #' @details This method assumes that inter-event times (b) are represented well by a exponential distribution. Since
 #' by definition b>= IETD, IETD is computed as the value whose resulting coefficient of variation (CV) of b equal to unity \insertCite{Restrepo-Posada1982,Adams2000}{IETD}.
@@ -24,9 +26,9 @@
 #' @importFrom stats sd approx
 #' @import ggplot2
 #'
-#' @examples CVA (Time_series=hourly_time_series,MaxIETD=24)
+#' @examples CVA (Time_series=hourly_time_series)
 #' @export
-CVA<-function(Time_series,MaxIETD=24){
+CVA<-function(Time_series,MaxIETD=24,xlabel="IETD [h]",ylabel="Coefficient of Variation (CV)"){
 
 # define Global variables
 IETD<-CV<-NULL
@@ -90,7 +92,7 @@ CV_Plot<- ggplot2::ggplot(data = df, aes(x=IETD,y=CV))+
   theme_bw()+
   geom_line()+
   geom_point()+
-  xlab("IETD [hr]")+ ylab("Coefficient of Variation (CV)")
+  xlab(xlabel)+ ylab(ylabel)
 
 #-----------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------

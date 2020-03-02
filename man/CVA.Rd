@@ -4,13 +4,17 @@
 \alias{CVA}
 \title{Coefficient of variation analysis}
 \usage{
-CVA(Time_series,MaxIETD)
+CVA(Time_series,MaxIETD,xlabel,ylabel)
 }
 \arguments{
-\item{Time_series}{A dataframe. First column contains the time and day of a rainfall pulse and the second one the depth
+\item{Time_series}{A dataframe. The first column contains the time and day of a rainfall pulse and the second one the depth
 of rainfall in each time step. The date must be as POSIXct class.}
 
 \item{MaxIETD}{The maximum value of IETD to be analyzed (in hours). Default value 24.}
+
+\item{xlabel}{Label of the x-axis of the figure IETD vs CV.}
+
+\item{ylabel}{Label of the y-axis of the figure IETD vs CV.}
 }
 \value{
 A list with a figure of IETD vs CV, a dataframe with the values of that figure, and the computed value of IETD.
@@ -28,7 +32,7 @@ IETD vs CV.
 To review the concepts of b and IETD, go to the details of  \code{\link{drawre}} function.
 }
 \examples{
-CVA (Time_series=hourly_time_series,MaxIETD=24)
+CVA (Time_series=hourly_time_series)
 }
 \references{
 \insertAllCited{}

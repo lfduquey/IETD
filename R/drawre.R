@@ -1,18 +1,18 @@
 #' @title Extraction of independent rainfall events from a sub-daily time series
 #'
 #' @description This function draws rainfall events from a sub-daily rainfall time series based on the inter-event
-#' time definition (IETD) method. The function allows slight rainfall events to be characterized which are in turn not
+#' time definition (IETD) method. The function allows slight rainfall events to be characterized which are, in turn, not
 #' considered in the extraction of rainfall events.
 #'
 #' @usage drawre(Time_series,IETD,Thres)
 #'
 #'
-#' @param Time_series A dataframe. First column contains the time and day of a rainfall pulse and the second one the depth
+#' @param Time_series A dataframe. The first column contains the time and day of a rainfall pulse and the second one the depth
 #'                   of rainfall in each time step. The date must be as POSIXct class.
 #' @param IETD The minimum rainless period or dry period (hours) to be considered between two independent rainfall events.
 #' @param Thres A rainfall depth threshold to define slight rainfall events (default value 0.5).
 #'
-#' @details IETD is defined as the minimum dry or rainless period between two independent events.This time interval is
+#' @details IETD is defined as the minimum dry or rainless period between two independent events. This time interval is
 #' applied to a continuous time series: if two groups of consecutive pulses of rainfall are separated by a rainless period
 #' longer than or equal to IETD, they are considered as two independent rainfall events; otherwise, these two groups are categorized
 #' as belonging to the same event \insertCite{Restrepo-Posada1982,Adams2000}{IETD}. A rainless period between two independent
@@ -20,11 +20,11 @@
 #' threshold Thres is characterized as a slight rainfall event.
 #'
 #' @return A list with a dataframe, named Rainfall_Characteristics, and a sublist, named Rainfall_Events,is provided.
-#' Rainfall_Characteristics contains the main information of each extracted rainfall event such as the number of
-#' event, the beginning and end of the event, duration (in hours), volume (in mm), and average intensity (in mm/h).
+#' Rainfall_Characteristics contains the main information of each extracted rainfall event such as event number,
+#' the beginning and end of the event, duration (in hours), volume (in mm), and average intensity (in mm/h).
 #' Rainfall_Events contains several dataframes with the values of rainfall pulses of each extracted rainfall event.
 #' The first dataframe in Rainfall_Events corresponds to the first event in Rainfall_Characteristics, the second
-#' dataframe in Rainfall_Events corresponds to the second event in Rainfall_Characteristics and so on.
+#' dataframe in Rainfall_Events corresponds to the second event in Rainfall_Characteristics, and so on.
 #'
 #' @note This function does not accept missing values in the sub-daily rainfall time series.
 #'
@@ -35,7 +35,7 @@
 #' @importFrom doParallel registerDoParallel stopImplicitCluster
 #'
 #'
-#' @examples drawre(Time_series=hourly_time_series,IETD=5,Thres=0.5)
+#' @examples \donttest{drawre(Time_series=hourly_time_series,IETD=5,Thres=0.5)}
 #' @export
 drawre <- function(Time_series,IETD,Thres=0.5){
 

@@ -4,16 +4,20 @@
 \alias{AAEA}
 \title{Average annual number of events analysis}
 \usage{
-AAEA(Time_series,MaxIETD)
+AAEA(Time_series,MaxIETD,xlabel,ylabel)
 }
 \arguments{
-\item{Time_series}{A dataframe. First column contains the time and day of a rainfall pulse and the second one the depth
+\item{Time_series}{A dataframe. The first column contains the time and day of a rainfall pulse and the second one the depth
 of rainfall in each time step. The date must be as POSIXct class.}
 
 \item{MaxIETD}{The maximum value of IETD to be analyzed (in hours). Default value 24.}
+
+\item{xlabel}{Label of the x-axis.}
+
+\item{ylabel}{Label of the y-axis.}
 }
 \value{
-A list with the figure of IETD vs AAE and a dataframe with its values.
+A list with the figure of IETD (in hours) vs AAE and a dataframe with its values.
 }
 \description{
 This function provides the required figure to define the inter-event time definition (IETD) based on
@@ -28,7 +32,7 @@ The analyst, thus, uses the plot of IETD vs AAE to define that value.
 To review the concept of IETD, go to the details of  \code{\link{drawre}} function.
 }
 \examples{
-AAEA(Time_series=hourly_time_series,MaxIETD=24)
+AAEA(Time_series=hourly_time_series)
 }
 \references{
 \insertAllCited{}

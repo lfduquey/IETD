@@ -4,18 +4,22 @@
 \alias{AutoA}
 \title{Autocorrelation analysis}
 \usage{
-AutoA(Time_series,MaxLag,CL)
+AutoA(Time_series,MaxLag,CL,xlabel,ylabel)
 }
 \arguments{
-\item{Time_series}{A dataframe. First column contains the time and day of a rainfall pulse and the second one the depth
+\item{Time_series}{A dataframe. The first column contains the time and day of a rainfall pulse and the second one the depth
 of rainfall in each time step. The date must be as POSIXct class.}
 
 \item{MaxLag}{The maximum lag time to be analyzed (in hours). Default value 24.}
 
 \item{CL}{The confidence level of the autocorrelation function (ACF)(in percentage). Default value 95\%.}
+
+\item{xlabel}{Label of the x-axis of the autocorrelogram.}
+
+\item{ylabel}{Label of the y-axis of the autocorrelogram.}
 }
 \value{
-A list with a figure of lag time vs ACF, i.e. an autocorrelogram, and a dataframe with its values.
+A list with a figure of lag time (in hours) vs ACF, i.e., an autocorrelogram, and a dataframe with its values.
 }
 \description{
 This function provides the required figure (an autocorrelogram) to define the inter-event time definition (IETD) based on
@@ -23,7 +27,7 @@ the autocorrelation analysis.
 }
 \details{
 IETD is here defined as the lag time where the autocorrelation coefficient of
-rain pulses, i.e. the autocorrelation function(ACF), converges to zero \insertCite{Joo2014,Adams2000}{IETD}. The
+rain pulses, i.e., the autocorrelation function(ACF), converges to zero \insertCite{Joo2014,Adams2000}{IETD}. The
 analyst uses an autocorrelogram to define that value within a specific level of tolerance. This function is
 based on the function \code{\link[stats]{acf}} of the \code{\link{stats}} package.
 }
@@ -31,7 +35,7 @@ based on the function \code{\link[stats]{acf}} of the \code{\link{stats}} packag
 To review the concept of IETD, go to the details of  \code{\link{drawre}} function.
 }
 \examples{
-AutoA(Time_series=hourly_time_series,MaxLag=24,CL=95)
+AutoA(Time_series=hourly_time_series)
 }
 \references{
 \insertAllCited{}

@@ -3,17 +3,19 @@
 #' @description This function provides the required figure to define the inter-event time definition (IETD) based on
 #' the average annual number of events analysis.
 #'
-#' @usage AAEA(Time_series,MaxIETD)
+#' @usage AAEA(Time_series,MaxIETD,xlabel,ylabel)
 #'
-#' @param Time_series A dataframe. First column contains the time and day of a rainfall pulse and the second one the depth
+#' @param Time_series A dataframe. The first column contains the time and day of a rainfall pulse and the second one the depth
 #'                   of rainfall in each time step. The date must be as POSIXct class.
 #' @param MaxIETD The maximum value of IETD to be analyzed (in hours). Default value 24.
+#' @param xlabel Label of the x-axis.
+#' @param ylabel Label of the y-axis.
 #'
 #' @details This analysis is based on the computation of the average annual number of events (AAE) for several IETD values, the appropriate value
 #' of IETD is determined as the point where increasing IETD does not change AAE significantly \insertCite{Joo2014,Adams2000}{IETD}.
 #' The analyst, thus, uses the plot of IETD vs AAE to define that value.
 #'
-#' @return A list with the figure of IETD vs AAE and a dataframe with its values.
+#' @return A list with the figure of IETD (in hours) vs AAE and a dataframe with its values.
 #'
 #' @note To review the concept of IETD, go to the details of  \code{\link{drawre}} function.
 #'
@@ -29,9 +31,9 @@
 #' @importFrom lubridate year
 #'
 #'
-#' @examples AAEA(Time_series=hourly_time_series,MaxIETD=24)
+#' @examples AAEA(Time_series=hourly_time_series)
 #' @export
-AAEA<- function(Time_series,MaxIETD=24) {
+AAEA<- function(Time_series,MaxIETD=24,xlabel="IETD [h]",ylabel="AAE") {
 
 # define Global variables
 i<-IETD<-AAE<-NULL
@@ -103,7 +105,7 @@ AAE_Plot<-ggplot2::ggplot(data = df, aes(x=IETD,y=AAE))+
   theme_bw()+
   geom_line()+
   geom_point()+
-  xlab("IETD [hr]")+ ylab("Aver. No of Annual Events")
+  xlab(xlabel)+ ylab(ylabel)
 
 
 #-----------------------------------------------------------------------------------------------------------------------

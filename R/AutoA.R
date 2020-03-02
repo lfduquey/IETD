@@ -4,19 +4,21 @@
 #' the autocorrelation analysis.
 #'
 #'
-#' @usage AutoA(Time_series,MaxLag,CL)
+#' @usage AutoA(Time_series,MaxLag,CL,xlabel,ylabel)
 #'
-#' @param Time_series A dataframe. First column contains the time and day of a rainfall pulse and the second one the depth
+#' @param Time_series A dataframe. The first column contains the time and day of a rainfall pulse and the second one the depth
 #'                    of rainfall in each time step. The date must be as POSIXct class.
 #' @param MaxLag The maximum lag time to be analyzed (in hours). Default value 24.
 #' @param CL The confidence level of the autocorrelation function (ACF)(in percentage). Default value 95\%.
+#' @param xlabel Label of the x-axis of the autocorrelogram.
+#' @param ylabel Label of the y-axis of the autocorrelogram.
 #'
 #' @details IETD is here defined as the lag time where the autocorrelation coefficient of
-#' rain pulses, i.e. the autocorrelation function(ACF), converges to zero \insertCite{Joo2014,Adams2000}{IETD}. The
+#' rain pulses, i.e., the autocorrelation function(ACF), converges to zero \insertCite{Joo2014,Adams2000}{IETD}. The
 #' analyst uses an autocorrelogram to define that value within a specific level of tolerance. This function is
 #' based on the function \code{\link[stats]{acf}} of the \code{\link{stats}} package.
 #'
-#' @return A list with a figure of lag time vs ACF, i.e. an autocorrelogram, and a dataframe with its values.
+#' @return A list with a figure of lag time (in hours) vs ACF, i.e., an autocorrelogram, and a dataframe with its values.
 #'
 #' @note To review the concept of IETD, go to the details of  \code{\link{drawre}} function.
 #'
@@ -29,8 +31,8 @@
 #'
 #'
 #' @export
-#' @examples AutoA(Time_series=hourly_time_series,MaxLag=24,CL=95)
-AutoA<- function(Time_series,MaxLag=24,CL=95) {
+#' @examples AutoA(Time_series=hourly_time_series)
+AutoA<- function(Time_series,MaxLag=24,CL=95,xlabel="Lag time [h]",ylabel="ACF") {
 
 # define Global variables
 Lag_Time<-NULL
@@ -91,7 +93,7 @@ AutoA_Plot<-ggplot2::ggplot(data = df, aes(x=Lag_Time,y=ACF))+
   geom_point()+
   geom_hline(yintercept = significance_level,linetype = "dashed", colour="blue")+
   geom_hline(yintercept = -significance_level,linetype = "dashed", colour="blue")+
-  xlab("Lag time [h]")+ ylab("Autocorrelation Coefficient")
+  xlab(xlabel)+ ylab(ylabel)
 
 #-----------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------
