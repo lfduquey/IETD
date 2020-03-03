@@ -1,8 +1,9 @@
 #' @title Extraction of independent rainfall events from a sub-daily time series
 #'
 #' @description This function draws rainfall events from a sub-daily rainfall time series based on the inter-event
-#' time definition (IETD) method. The function allows slight rainfall events to be characterized which are, in turn, not
-#' considered in the extraction of rainfall events.
+#' time definition (IETD) method and computes the event characteristics such as duration, total rainfall depth, and
+#' intensity. The function allows slight rainfall events to be characterized, which are, in turn, not considered in
+#' the extraction of rainfall events.
 #'
 #' @usage drawre(Time_series,IETD,Thres)
 #'
@@ -21,7 +22,7 @@
 #'
 #' @return A list with a dataframe, named Rainfall_Characteristics, and a sublist, named Rainfall_Events, is provided.
 #' Rainfall_Characteristics contains the main information of each extracted rainfall event such as event number,
-#' the beginning and end of the event, duration (in hours), rainfall depth, and average intensity (rainfall depth/duration).
+#' the beginning and end of the event, duration (in hours), total rainfall depth, and average intensity (total rainfall depth/duration).
 #' Rainfall_Events contains several dataframes with the values of rainfall pulses of each extracted rainfall event.
 #' The first dataframe in Rainfall_Events corresponds to the first event in Rainfall_Characteristics, the second
 #' dataframe in Rainfall_Events corresponds to the second event in Rainfall_Characteristics, and so on.
@@ -29,6 +30,8 @@
 #' @note This function does not accept missing values in the sub-daily rainfall time series.
 #'
 #' @author Luis F. Duque <lfduquey@@gmail.com> <l.f.duque-yaguache2@@newcastle.ac.uk>
+#'
+#' @references \insertAllCited{}
 #'
 #' @importFrom foreach foreach %dopar%
 #' @importFrom parallel detectCores
