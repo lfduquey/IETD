@@ -53,6 +53,9 @@ i<-j<-k<-NULL
 if (length(which(is.na(Time_series[,2])))>=1){stop("There are missing values!")}
 if (length(which(class(Time_series[,1])=="POSIXct"))==0){stop("Dates should be as POSIXct class!")}
 
+timestep<-difftime(Time_series[2,1],Time_series[1,1], units="hours")
+Indexgaps<-which(diff(Time_series[,1])/60>timestep)
+if (length(Indexgaps)>=1){stop(paste0("There are date gaps in row/s"," ",Indexgaps,"!"))}
 #-----------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------
@@ -160,11 +163,11 @@ IndexEvents<-which(sapply(Event.below.thre,function(x)1 %in% x))
 
 # Filter the events
 Events[IndexEvents]<-NULL
-Duration<-if(Thres==0){Duration} else {Duration[-IndexEvents]}
-Volume<-if(Thres==0){Volume} else {Volume[-IndexEvents]}
-Average_Intensity<-if(Thres==0){Average_Intensity} else {Average_Intensity[-IndexEvents]}
-SdateEvent<-if(Thres==0) {SdateEvent} else {SdateEvent[-IndexEvents]}
-FdateEvent<-if (Thres==0) {FdateEvent} else {FdateEvent[-IndexEvents]}
+Duration<-if(length(IndexEvents)==0){Duration} else {Duration[-IndexEvents]}
+Volume<-if(length(IndexEvents)==0){Volume} else {Volume[-IndexEvents]}
+Average_Intensity<-if(length(IndexEvents)==0){Average_Intensity} else {Average_Intensity[-IndexEvents]}
+SdateEvent<-if(length(IndexEvents)==0) {SdateEvent} else {SdateEvent[-IndexEvents]}
+FdateEvent<-if (length(IndexEvents)==0) {FdateEvent} else {FdateEvent[-IndexEvents]}
 
 #-----------------------------------------------------------------------------------------------------------------------
 #-----------------------------------------------------------------------------------------------------------------------
