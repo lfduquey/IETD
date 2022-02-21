@@ -42,8 +42,6 @@
 #' @examples \donttest{drawre(Time_series=hourly_time_series,IETD=5,Thres=0.5)}
 #' @export
 #'
-library(foreach)
-library(parallel); library(doParallel)
 drawre <- function(Time_series,IETD,format,Thres=0.5){
 
   # define Global variables
