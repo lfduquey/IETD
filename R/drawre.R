@@ -42,6 +42,10 @@
 #' @examples \donttest{drawre(Time_series=hourly_time_series,IETD=5,Thres=0.5)}
 #' @export
 #'
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e1c3be11c64b8af6f80d6500399c1c4346e62fb
 drawre <- function(Time_series,IETD,format,Thres=0.5){
 
   # define Global variables
